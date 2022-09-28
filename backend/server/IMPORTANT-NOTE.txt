@@ -1,0 +1,36 @@
+1. Password change need to be supplemented
+
+2. do-while loop can be infinitive loop if the number of records reach to the limit of generated code
+
+3. field paymentMethod in Ticket not good
+
+4. One ticket can be responsible by many repairing employees, and check the employee responsible for ticket is a mechanic
+
+5. Check logic for ticket:
+- product quantity:
+- Problem when update the quantity of product (if a number of products has been used, but when updating the quantity only the same or greater than or less than)
+
+6. Save image on gcloud: uploading...
+
+7. Statistic: (tự động cập nhật vào 00:00)
+- Thống kê theo ngày, tuần, tháng, năm với các thuộc tính:
+    + Tổng số khách hàng từ trước đến nay / Số khách hàng mới
+    + Tổng ticket đã tạo/đã huỷ/đã thành công
+    + Tổng doanh thu: sigma(totalPrice/ticket)
+
+8. Bonus:
+- Tự động thông báo mỗi khi vào trang quản lý products: thông báo sắp hết hàng tồn kho (vd: < 5)
+- Đồng bộ hoá các thao tác cập nhật, thêm, xoá
+
+Some useful links:
+https://thorben-janssen.com/hibernate-tips-how-to-delete-child-entities/
+https://thorben-janssen.com/hibernate-tips-the-best-way-to-remove-entities-from-a-many-to-many-association/
+https://www.jpa-buddy.com/blog/synchronization-methods-for-many-to-many-associations/
+
+
+Chú ý: khi sử dụng @Data, khi ta khai báo Collection/Entity của đối tượng cha (quan hệ kết tập, association) trong entity, Hibernate s/d
+phương thức equals and hashCode, các phương thức này khi được gen bởi @Data sẽ s/d
+đến Collection/Entity đó. Mà trong các class cha cũng khai báo Collection gồm các đối tượng con => gây ra hiện tương recursion
+=> Solution: Override hai phương thức hoặc chỉ s/d các phương thức cần thiết trong @Data: vd @Getter, @Setter bỏ qua @ToString, @EqualsAndHashCode
+
+Vấn đề bidirectional relationship có thể gây ra infinite recursion: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
